@@ -10,11 +10,36 @@ O código deverá está devidamente formatado e comentado, de forma clara e que 
 - Universidade Estácio
 */
 
-// Primeiro passo - Importação da bibioteca a ser utilizada e abertura da função "main" e sua respectiva "{"
+// Importação da bibioteca a ser utilizada
 #include <stdio.h>
+// Inclusão da função para comparação das cartas
+void compararCartas(
+    int populacao1, int populacao2,
+    float area1, float area2,
+    double pib1, double pib2,
+    int pontos_turisticos1, int pontos_turisticos2,
+    double densidade1, double densidade2,
+    double pib_capita1, double pib_capita2,
+    float super_poder1, float super_poder2) 
+    {
+    printf("\n==============================\n");
+    printf("Comparação de Cartas:\n\n");
+
+    printf("População: Carta %d venceu (%d)\n", (populacao1 > populacao2) ? 1 : 2, (populacao1 > populacao2) ? 1 : 0);
+    printf("Área: Carta %d venceu (%d)\n", (area1 > area2) ? 1 : 2, (area1 > area2) ? 1 : 0);
+    printf("PIB: Carta %d venceu (%d)\n", (pib1 > pib2) ? 1 : 2, (pib1 > pib2) ? 1 : 0);
+    printf("Pontos Turísticos: Carta %d venceu (%d)\n", (pontos_turisticos1 > pontos_turisticos2) ? 1 : 2, (pontos_turisticos1 > pontos_turisticos2) ? 1 : 0);
+    printf("Densidade Populacional: Carta %d venceu (%d)\n", (densidade1 < densidade2) ? 1 : 2, (densidade1 < densidade2) ? 1 : 0); // menor vence
+    printf("PIB per Capita: Carta %d venceu (%d)\n", (pib_capita1 > pib_capita2) ? 1 : 2, (pib_capita1 > pib_capita2) ? 1 : 0);
+    printf("Super Poder: Carta %d venceu (%d)\n", (super_poder1 > super_poder2) ? 1 : 2, (super_poder1 > super_poder2) ? 1 : 0);
+
+    printf("==============================\n\n");
+}
+
+// Abertura da função "main" e sua respectiva "{"
 int main(){
 
-/*Segundo passo - Determinação das variáveis a serem uilizadas no sistema. 
+/* Determinação das variáveis a serem uilizadas no sistema. 
 Por serem poucas variáveis as deixei separadas, contudo elas podem ser agrupadas por tipos, desde que separadas por "," e ";" o tipo de variável.
 */
 char estado1[20];
@@ -26,6 +51,8 @@ double pib1;
 int pontos_turisticos1;
 double densidade1;
 double pib_capita1;
+float super_poder1;
+
 
 char estado2[20];
 char codigo_da_carta2[20];
@@ -36,11 +63,12 @@ double pib2;
 int pontos_turisticos2;
 double densidade2;
 double pib_capita2;
+float super_poder2;
 
-// Terceiro passo - Apresentação do sistema ao usuário pela função printf
+// Apresentação do sistema ao usuário pela função printf
     printf("Olá, seja bem vindo ao jogo Super Trunfo Cidades.\nNesse momento estamos cadastrando os dados das respectivas cartas utilizadas no jogo.\n\n\nPor favor, digite os dados abaixo conforme solicitados. \n\n");
 
-// Quarto Passo - Início da solictação dos dados para preenchimento pelo usuário  - conjunto 1
+// Início da solictação dos dados para preenchimento pelo usuário  - conjunto 1
     printf("Digite o Estado:\n ");
     scanf("%s", estado1);
     printf("Confirmado! O Estado é: %s \n\n", estado1);
@@ -69,14 +97,15 @@ double pib_capita2;
     scanf("%d", &pontos_turisticos1);
     printf("Confirmado! O número de pontos turísticos da cidade é de: %d pontos turísticos. \n\n\n", pontos_turisticos1);
 
-    // Quinto passo - Cálculo de Densidade Populacional2 e PIB per Capita2 e mensagem de encerramento parcial do cadastro e apresentação dos dados cadastrados
+    // Cálculo de Densidade Populacional1, PIB per Capita1, Super Poder1 e mensagem de encerramento parcial do cadastro e apresentação dos dados cadastrados
     densidade1 = (double) populacao1 / area1;
     pib_capita1 = (double) pib1 / populacao1;
+    super_poder1 = (double) populacao1 + area1 + pib1 + pontos_turisticos1 + pib_capita1 + (1/densidade1);
 
     printf("Cadastro da carta 1 concluído.\n");
-    printf("Estado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n\n\n\n",estado1,codigo_da_carta1,cidade1,populacao1,area1,pib1,pontos_turisticos1,densidade1,pib_capita1);
+    printf("Estado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado1,codigo_da_carta1,cidade1,populacao1,area1,pib1,pontos_turisticos1,densidade1,pib_capita1,super_poder1);
 
-// Sexto passo - Início da solictação dos dados para preenchimento pelo usuário  - conjunto 2
+// Início da solictação dos dados para preenchimento pelo usuário  - conjunto 2
     printf("Digite o Estado:\n ");
     scanf("%s", estado2);
     printf("Confirmado! O Estado é: %s \n\n", estado2);
@@ -105,18 +134,29 @@ double pib_capita2;
     scanf("%d", &pontos_turisticos2);
     printf("Confirmado! O número de pontos turísticos da cidade é de: %d pontos turísticos. \n\n\n", pontos_turisticos2);
 
-// Setimo passo - Cálculo de Densidade Populacional2 e PIB per Capita2 e mensagem de encerramento parcial do cadastro e apresentação dos dados cadastrados
+// Cálculo de Densidade Populacional2, PIB per Capita2, Super Poder2 e mensagem de encerramento parcial do cadastro e apresentação dos dados cadastrados
     densidade2 =(double) populacao2 / area2;
     pib_capita2 = (double) pib2 / populacao2;
+    super_poder2 = (double) populacao2 + area2 + pib2 + pontos_turisticos2 + pib_capita2 + (1/densidade2);
 
     printf("Cadastro da carta 2 concluído.\n");
-    printf("Estado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n\n\n\n",estado2,codigo_da_carta2,cidade2,populacao2,area2,pib2,pontos_turisticos2,densidade2,pib_capita2);
+    printf("Estado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado2,codigo_da_carta2,cidade2,populacao2,area2,pib2,pontos_turisticos2,densidade2,pib_capita2,super_poder2);
 
-// Oitavo passo - Mensagem de encerramento e apresentação final de todos os dados cadastrados pelo usuário
+// Mensagem de encerramento e apresentação final de todos os dados cadastrados pelo usuário
     printf("Parabéns,todos os dados cadastrados!\n\nOs dados cadastrados ficaram organizados da seguinte forma:\n");
-    printf("CARTA 1:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n\n\n\n",estado1,codigo_da_carta1,cidade1,populacao1,area1,pib1,pontos_turisticos1,densidade1,pib_capita1);
-    printf("CARTA 2:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\n\n\n\n",estado2,codigo_da_carta2,cidade2,populacao2,area2,pib2,pontos_turisticos2,densidade2,pib_capita2);
+    printf("CARTA 1:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado1,codigo_da_carta1,cidade1,populacao1,area1,pib1,pontos_turisticos1,densidade1,pib_capita1,super_poder1);
+    printf("CARTA 2:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado2,codigo_da_carta2,cidade2,populacao2,area2,pib2,pontos_turisticos2,densidade2,pib_capita2,super_poder2);
     printf("Muito obrigado por utilizar nosso sistema.\nAté a próxima!\n\n\n\n\n");
     
-return 0;
+//Função de comparação de cartas
+    compararCartas(
+    populacao1, populacao2,
+    area1, area2,
+    pib1, pib2,
+    pontos_turisticos1, pontos_turisticos2,
+    densidade1, densidade2,
+    pib_capita1, pib_capita2,
+    super_poder1, super_poder2);
+
+    return 0;
 }
