@@ -1,8 +1,7 @@
 /*Exercício de desafio Super Trunfo.
-Nesse desafio criarei o início para a base dos dados a serem utilizados em um jogo no estilo Super Trunfo.
-Nesse primeiro desafio, foi solicitado um pequeno sistema que permita um usuário inserir alguns dados sobre os tópicos: Estado; Cód da Carta; Nome da Cidade; População; Área em KM2;
-PIB e Núm. de Pontos Turísticos.
-Nesse primeiro momento deverei apresentar apenas a composição para preenchimento de dados para duas cartas.
+Nesse desafio implementarei a lógica do jogo Super Trunfo, conforme instrução do exercício, utilizarei o código do desafio anterior Super Trunfo.
+Nesse segundo desafio, foi solicitado a implementação da lógica para comparar duas cartas e determinar qual delas é a vencedora;
+Esse desafio é uma continuação do desafio anterior.
 O código deverá está devidamente formatado e comentado, de forma clara e que permita futuras análise e manuteções de forma clara e facilitada.
 
 - João Victor Porangaba 
@@ -12,29 +11,6 @@ O código deverá está devidamente formatado e comentado, de forma clara e que 
 
 // Importação da bibioteca a ser utilizada
 #include <stdio.h>
-// Inclusão da função para comparação das cartas
-void compararCartas(
-    int populacao1, int populacao2,
-    float area1, float area2,
-    double pib1, double pib2,
-    int pontos_turisticos1, int pontos_turisticos2,
-    double densidade1, double densidade2,
-    double pib_capita1, double pib_capita2,
-    float super_poder1, float super_poder2) 
-    {
-    printf("\n==============================\n");
-    printf("Comparação de Cartas:\n\n");
-
-    printf("População: Carta %d venceu (%d)\n", (populacao1 > populacao2) ? 1 : 2, (populacao1 > populacao2) ? 1 : 0);
-    printf("Área: Carta %d venceu (%d)\n", (area1 > area2) ? 1 : 2, (area1 > area2) ? 1 : 0);
-    printf("PIB: Carta %d venceu (%d)\n", (pib1 > pib2) ? 1 : 2, (pib1 > pib2) ? 1 : 0);
-    printf("Pontos Turísticos: Carta %d venceu (%d)\n", (pontos_turisticos1 > pontos_turisticos2) ? 1 : 2, (pontos_turisticos1 > pontos_turisticos2) ? 1 : 0);
-    printf("Densidade Populacional: Carta %d venceu (%d)\n", (densidade1 < densidade2) ? 1 : 2, (densidade1 < densidade2) ? 1 : 0); // menor vence
-    printf("PIB per Capita: Carta %d venceu (%d)\n", (pib_capita1 > pib_capita2) ? 1 : 2, (pib_capita1 > pib_capita2) ? 1 : 0);
-    printf("Super Poder: Carta %d venceu (%d)\n", (super_poder1 > super_poder2) ? 1 : 2, (super_poder1 > super_poder2) ? 1 : 0);
-
-    printf("==============================\n\n");
-}
 
 // Abertura da função "main" e sua respectiva "{"
 int main(){
@@ -146,17 +122,25 @@ float super_poder2;
     printf("Parabéns,todos os dados cadastrados!\n\nOs dados cadastrados ficaram organizados da seguinte forma:\n");
     printf("CARTA 1:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado1,codigo_da_carta1,cidade1,populacao1,area1,pib1,pontos_turisticos1,densidade1,pib_capita1,super_poder1);
     printf("CARTA 2:\nEstado: %s\nCódigo da Carta: %s\nCidade: %s\nPopulação: %d pessoas\nÁrea: %.2f KM2\nPIB: R$ %.2f reais\nNúmero de Pontos Turísticos: %d pontos turísticos\nDensidade Populacional: %.2f\nPIB per Capita: %.2f\nSuper Poder de: %.2f\n\n\n",estado2,codigo_da_carta2,cidade2,populacao2,area2,pib2,pontos_turisticos2,densidade2,pib_capita2,super_poder2);
-    printf("Muito obrigado por utilizar nosso sistema.\nAté a próxima!\n\n\n\n\n");
     
-//Função de comparação de cartas
-    compararCartas(
-    populacao1, populacao2,
-    area1, area2,
-    pib1, pib2,
-    pontos_turisticos1, pontos_turisticos2,
-    densidade1, densidade2,
-    pib_capita1, pib_capita2,
-    super_poder1, super_poder2);
+    
+// Função de comparação
+    printf("\n--- Comparação de Cartas (Atributo: População) ---\n\n");
+
+    printf("Carta 1 - %s (%s): %d\n", cidade1, estado1, populacao1);
+    printf("Carta 2 - %s (%s): %d\n\n", cidade2, estado2, populacao2);
+
+    if (populacao1 > populacao2) {
+    printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+}
+    else if (populacao2 > populacao1) {
+    printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+}
+    else {
+    printf("Resultado: Empate! Ambas as cidades têm a mesma população.\n\n\n\n");
+}
+
+    printf("Muito obrigado por utilizar nosso sistema.\nAté a próxima!\n\n");
 
     return 0;
 }
